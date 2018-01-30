@@ -12,12 +12,12 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         subscribeToKeyboardNotifications()
+        UdacityClient.sharedInstance().thing()
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -31,6 +31,26 @@ class LoginViewController: UIViewController {
     
     func unsubscribeToKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        guard emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty else {
+            return displayError("Enter an email and password")
+        }
+        
+        UdacityClient.sharedInstance().authenticateWithViewController(self) { (success, errorString) in
+            print("Done")
+        }
+    }
+    
+    @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func prepareForKeyboardDismissal() {
