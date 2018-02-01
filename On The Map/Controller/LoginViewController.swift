@@ -16,8 +16,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         subscribeToKeyboardNotifications()
-        UdacityClient.sharedInstance().thing()
-       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -34,17 +32,29 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        guard emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty else {
+        guard !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty else {
             return displayError("Enter an email and password")
         }
         
-        UdacityClient.sharedInstance().authenticateWithViewController(self) { (success, errorString) in
-            print("Done")
-        }
+        UdacityClient.sharedInstance().authenticateWithViewController(self, username: emailTextField.text!, password: passwordTextField.text!, completionHandlerForAuth: { (success, errorString) in
+            DispatchQueue.main.async(execute: {
+                if (success) {
+                    print("Logged in!")
+                    self.completeLogin()
+                } else {
+                    self.displayError(errorString!)
+                }
+            })
+        })
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         
+    }
+    
+    func completeLogin() {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
+        present(controller, animated: true, completion: nil)
     }
     
     func displayError(_ error: String) {

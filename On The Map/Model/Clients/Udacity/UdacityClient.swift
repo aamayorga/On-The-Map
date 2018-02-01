@@ -10,7 +10,11 @@ import UIKit
 
 class UdacityClient: NSObject {
     
+    // Shared session
     var session = URLSession.shared
+    
+    // Authentication state
+    var sessionID: String? = nil
     
     func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         

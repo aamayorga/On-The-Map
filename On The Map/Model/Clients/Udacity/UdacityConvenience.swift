@@ -10,15 +10,15 @@ import UIKit
 
 extension UdacityClient {
     
-    func authenticateWithViewController(_ hostViewController: UIViewController, completionHandlerForAuth: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
+    func authenticateWithViewController(_ hostViewController: UIViewController, username: String, password: String, completionHandlerForAuth: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
         
-        getSessionID("lol@lol.com", password: "abcd") { (success, sessionID, errorString) in
+        getSessionID(username, password: password) { (success, sessionID, errorString) in
             if success {
-                print(sessionID!)
+                self.sessionID = sessionID
             }
+            
+            completionHandlerForAuth(success, errorString)
         }
-        
-        
     }
     
     private func getSessionID(_ username: String, password: String, completionHandlerForSession: @escaping (_ success: Bool, _ sessionID: String?, _ errorString: String?) -> Void) {
@@ -41,7 +41,7 @@ extension UdacityClient {
             if let sessionID = sessionDict[UdacityClient.JSONResponseKeys.SessionID] as? String {
                 completionHandlerForSession(true, sessionID, nil)
             } else {
-                completionHandlerForSession(false, nil, "No Session ID Found")
+                completionHandlerForSession(false, nil, "Login Failed (No Session ID Found)")
             }
         }
     }
