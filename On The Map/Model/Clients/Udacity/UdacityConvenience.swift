@@ -21,6 +21,8 @@ extension UdacityClient {
         }
     }
     
+    
+    
     private func getSessionID(_ username: String, password: String, completionHandlerForSession: @escaping (_ success: Bool, _ sessionID: String?, _ errorString: String?) -> Void) {
         
         let parameters = [String:AnyObject]()
