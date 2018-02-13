@@ -8,9 +8,9 @@
 
 extension ParseClient {
     
-    func getStudentLocations(_ limit: Int, skip: Int, order: String, completionHandlerForStudentLocations: @escaping (_ success: Bool, _ studentLocations: [[String: AnyObject]]?, _ errorString: String?) -> Void) {
+    func getStudentLocations(_ limit: Int?, skip: Int?, order: String?, completionHandlerForStudentLocations: @escaping (_ success: Bool, _ studentLocations: [[String: AnyObject]]?, _ errorString: String?) -> Void) {
         
-        let parameters = [String:AnyObject]()
+        let parameters = [ParseClient.ParameterKeys.Limit: limit ?? 0, ParseClient.ParameterKeys.Skip: skip ?? "", ParseClient.ParameterKeys.Order: order ?? ""] as [String : AnyObject]
         
         let _ = taskForGETMethod(Methods.StudentLocation, parameters: parameters) { (results, error) in
             

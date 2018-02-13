@@ -22,65 +22,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On The Map/Model/Clients/Parse/ParseClient.swift"
-            timestampString = "539627200.431868"
+            filePath = "On The Map/Model/Clients/Parse/ParseConvenience.swift"
+            timestampString = "540225832.550347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "test()"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "getStudentLocations(_:skip:order:completionHandlerForStudentLocations:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "On_The_Map.ParseClient.thing() -&gt; ()"
+                  symbolName = "On_The_Map.ParseClient.getStudentLocations(Swift.Optional&lt;Swift.Int&gt;, skip: Swift.Optional&lt;Swift.Int&gt;, order: Swift.Optional&lt;Swift.String&gt;, completionHandlerForStudentLocations: (Swift.Bool, Swift.Optional&lt;Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "On The Map"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ansuke/Documents/Developer/Udactiy/iOS/Projects/On%20The%20Map/On%20The%20Map/Model/Clients/Parse/ParseClient.swift"
-                  timestampString = "539626548.059669"
+                  urlString = "file:///Users/ansuke/Documents/Developer/Udactiy/iOS/Projects/On%20The%20Map/On%20The%20Map/Model/Clients/Parse/ParseConvenience.swift"
+                  timestampString = "540225832.562782"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "14">
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "1815">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; () in On_The_Map.ParseClient.thing() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; () in On_The_Map.ParseClient.getStudentLocations(Swift.Optional&lt;Swift.Int&gt;, skip: Swift.Optional&lt;Swift.Int&gt;, order: Swift.Optional&lt;Swift.String&gt;, completionHandlerForStudentLocations: (Swift.Bool, Swift.Optional&lt;Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "On The Map"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ansuke/Documents/Developer/Udactiy/iOS/Projects/On%20The%20Map/On%20The%20Map/Model/Clients/Parse/ParseClient.swift"
-                  timestampString = "539626548.063333"
+                  urlString = "file:///Users/ansuke/Documents/Developer/Udactiy/iOS/Projects/On%20The%20Map/On%20The%20Map/Model/Clients/Parse/ParseConvenience.swift"
+                  timestampString = "540225832.5701489"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "26">
+                  offsetFromSymbolStart = "29">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "On The Map/Model/Clients/Parse/ParseClient.swift"
-            timestampString = "539627200.432207"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "taskForGETMethod(_:parameters:completionHandlerForGET:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

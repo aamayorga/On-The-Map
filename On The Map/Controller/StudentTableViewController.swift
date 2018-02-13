@@ -10,55 +10,59 @@ import UIKit
 
 class StudentTableViewController: UITableViewController {
 
+    var studentDictionary = [StudentLocation]()
+    let reuseIdentifier = "studentCell"
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.studentDictionary = ParseClient.sharedInstance().StudentInformationArray
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        ParseClient.sharedInstance().test()
+        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: nil) { (success, data, error) in
+            guard error == nil else {
+                print("Error getting student locations.")
+                return
+            }
+            
+            if (success) {
+                
+                let dictionary = data!.map({ (student: [String: AnyObject]) -> StudentLocation in
+                    StudentLocation.init(dictionary: student)
+                })
+                print(dictionary)
+                ParseClient.sharedInstance().StudentInformationArray = dictionary
+                print("Succ")
+            }
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return studentDictionary.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StudentTableViewCell
 
-        // Configure the cell...
+        cell.studentNameLabel.text = "\(studentDictionary[indexPath.row].firstName ?? "") \(studentDictionary[indexPath.row].lastName ?? "")"
+        cell.studentShareLabel.text = studentDictionary[indexPath.row].mediaURL
 
         return cell
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation

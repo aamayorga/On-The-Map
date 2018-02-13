@@ -12,9 +12,13 @@ class ParseClient: NSObject {
 
     var session = URLSession.shared
     
+    var StudentInformationArray = [StudentLocation]()
+    
     func test() {
-        getStudentLocations(0, skip: 0, order: "") { (success, results, error) in
-            print(results![0])
+        getStudentLocations(5, skip: 0, order: "") { (success, results, error) in
+            print(results!)
+            
+            // TODO: Get results and put them in StudentLocation array, to do this learn about Codable protocol
         }
     }
     
@@ -51,6 +55,8 @@ class ParseClient: NSObject {
             self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
         
+        print(request.url?.absoluteString)
+        
         task.resume()
         
         return task
@@ -61,6 +67,7 @@ class ParseClient: NSObject {
         var parsedResult: AnyObject! = nil
         do {
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+            print(parsedResult)
         } catch {
             let userInfo = [NSLocalizedDescriptionKey: "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))

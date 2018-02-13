@@ -53,6 +53,24 @@ class LoginViewController: UIViewController {
     }
     
     func completeLogin() {
+        
+        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: nil) { (success, data, error) in
+            guard error == nil else {
+                print("Error getting student locations.")
+                return
+            }
+            
+            if (success) {
+                
+                let dictionary = data!.map({ (student: [String: AnyObject]) -> StudentLocation in
+                    StudentLocation.init(dictionary: student)
+                })
+                print(dictionary)
+                ParseClient.sharedInstance().StudentInformationArray = dictionary
+                print("Succ")
+            }
+        }
+        
         let controller = storyboard!.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
         present(controller, animated: true, completion: nil)
     }

@@ -292,33 +292,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="Wb7-Kv-eOP" customClass="StudentTableViewCell" customModule="On_The_Map" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" rowHeight="80" id="Wb7-Kv-eOP" customClass="StudentTableViewCell" customModule="On_The_Map" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wb7-Kv-eOP" id="Sdu-lQ-yDl">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="UNR-F8-VtE">
-                                            <rect key="frame" x="0.0" y="4" width="414" height="51.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="4" width="414" height="71.666666666666671"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" image="icon_pin" translatesAutoresizingMaskIntoConstraints="NO" id="hhN-iR-XWJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="51.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="71.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="T7R-uf-KuG"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="WfL-iP-0Xv">
-                                                    <rect key="frame" x="64" y="0.0" width="350" height="51.666666666666664"/>
+                                                    <rect key="frame" x="64" y="0.0" width="350" height="71.666666666666671"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9D-UR-yiG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="29"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="40.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Share thing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mun-gb-rOQ">
-                                                            <rect key="frame" x="0.0" y="29" width="350" height="22.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="40.333333333333336" width="350" height="31.333333333333336"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -339,6 +339,10 @@
                                         <constraint firstAttribute="bottom" secondItem="UNR-F8-VtE" secondAttribute="bottom" constant="4" id="wgp-fe-sNI"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="studentNameLabel" destination="V9D-UR-yiG" id="LCK-zp-IXP"/>
+                                    <outlet property="studentShareLabel" destination="Mun-gb-rOQ" id="sL3-Gy-rV3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
