@@ -31,7 +31,7 @@ extension UdacityClient {
         let _ = taskForPOSTMethod(Methods.Session, parameters: parameters, jsonBody: jsonBody) { (results, error) in
             
             guard (error == nil) else {
-                completionHandlerForSession(false, nil, "Login Failed (Session ID).")
+                completionHandlerForSession(false, nil, "Failure to connect")
                 return
             }
             

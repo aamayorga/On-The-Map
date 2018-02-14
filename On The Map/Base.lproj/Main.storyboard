@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p0z-qk-XfP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,6 +112,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="AyR-jd-dzS" id="b2Q-2s-991"/>
+                        <outlet property="loginButton" destination="tcg-35-YwM" id="VIp-tv-maI"/>
                         <outlet property="passwordTextField" destination="ECj-yz-Rbt" id="cfj-qF-KQc"/>
                     </connections>
                 </viewController>
@@ -161,7 +163,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JEY-gV-ET5"/>
                     </view>
-                    <navigationItem key="navigationItem" title="On the Map" id="U2K-Om-x13"/>
+                    <navigationItem key="navigationItem" title="On the Map" id="U2K-Om-x13">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="4mG-8r-Tq6">
+                            <connections>
+                                <action selector="logoutBarButton:" destination="Z3d-Bu-4cX" id="gao-Pg-SX2"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add" image="icon_addpin" id="vYZ-dk-jMf">
+                                <connections>
+                                    <action selector="refreshBarButton:" destination="Z3d-Bu-4cX" id="y1I-HD-zhf"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Refresh" image="icon_refresh" id="1i2-52-eIk"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Sdh-jY-oBC" id="Aai-9s-6vW"/>
                     </connections>
@@ -350,7 +366,25 @@
                             <outlet property="delegate" destination="hAL-e2-vtM" id="jT0-d5-Rwj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="On the Map" id="8WI-XP-288"/>
+                    <navigationItem key="navigationItem" title="On the Map" id="8WI-XP-288">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="tyU-EQ-nNg">
+                            <connections>
+                                <action selector="logoutBarButton:" destination="hAL-e2-vtM" id="BtL-7d-bWm"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add" image="icon_addpin" id="Slm-21-mfS">
+                                <connections>
+                                    <action selector="postPinBarButton:" destination="hAL-e2-vtM" id="pVW-41-Lg9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Refresh" image="icon_refresh" id="HDm-VQ-v70">
+                                <connections>
+                                    <action selector="refreshBarButton:" destination="hAL-e2-vtM" id="Zhl-8k-rkP"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zw6-ey-Hkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -393,11 +427,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_addpin" width="24" height="24"/>
         <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_listview-selected" width="75" height="50"/>
         <image name="icon_mapview-deselected" width="75" height="50"/>
         <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>
+        <image name="icon_refresh" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>

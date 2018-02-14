@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SafariServices
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        sender.isEnabled = false
         guard !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty else {
             return displayError("Enter an email and password")
         }
@@ -39,8 +42,10 @@ class LoginViewController: UIViewController {
         UdacityClient.sharedInstance().authenticateWithViewController(self, username: emailTextField.text!, password: passwordTextField.text!, completionHandlerForAuth: { (success, errorString) in
             DispatchQueue.main.async(execute: {
                 if (success) {
-                    print("Logged in!")
                     self.completeLogin()
+                    
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                 } else {
                     self.displayError(errorString!)
                 }
@@ -49,6 +54,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        let svc = SFSafariViewController(url: URL(string: "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")!)
+        self.present(svc, animated: true, completion: nil)
         
     }
     
@@ -65,7 +72,9 @@ class LoginViewController: UIViewController {
                 let dictionary = data!.map({ (student: [String: AnyObject]) -> StudentLocation in
                     StudentLocation.init(dictionary: student)
                 })
-                print(dictionary)
+                
+                
+                
                 ParseClient.sharedInstance().StudentInformationArray = dictionary
                 print("Succ")
             }
@@ -78,7 +87,9 @@ class LoginViewController: UIViewController {
     func displayError(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: {
+            self.loginButton.isEnabled = true
+        })
     }
     
     @objc func prepareForKeyboardDismissal() {

@@ -14,14 +14,6 @@ class ParseClient: NSObject {
     
     var StudentInformationArray = [StudentLocation]()
     
-    func test() {
-        getStudentLocations(5, skip: 0, order: "") { (success, results, error) in
-            print(results!)
-            
-            // TODO: Get results and put them in StudentLocation array, to do this learn about Codable protocol
-        }
-    }
-    
     func taskForGETMethod(_ method: String, parameters: [String:AnyObject]?, completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         let request = NSMutableURLRequest(url: udacityURLFromParameters(parameters!, withPathExtension: ParseClient.Methods.StudentLocation))
