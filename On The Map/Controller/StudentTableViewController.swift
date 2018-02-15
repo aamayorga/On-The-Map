@@ -50,15 +50,19 @@ class StudentTableViewController: UITableViewController {
         selectedStudent.selectionStyle = .none
         
         print(selectedStudent)
-        print("Media URL", selectedStudent.studentShareLabel.text!)
         
         guard let urlString = selectedStudent.studentShareLabel.text else {
+            print("No URL String")
+            return
+        }
+        
+        guard let validURL = URL(string: urlString) else {
             print("Invalid URL")
             return
         }
         
-        if UIApplication.shared.canOpenURL(URL(string: urlString)!) {
-            let svc = SFSafariViewController(url: URL(string: urlString)!)
+        if UIApplication.shared.canOpenURL(validURL) {
+            let svc = SFSafariViewController(url: validURL)
             self.present(svc, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Invalid URL", preferredStyle: .alert)
@@ -68,8 +72,21 @@ class StudentTableViewController: UITableViewController {
     }
     
     @IBAction func logoutBarButton(_ sender: UIBarButtonItem) {
-        UdacityClient.sharedInstance().sessionID = nil
-        dismiss(animated: true, completion: nil)
+        sender.isEnabled = false
+        let _ = UdacityClient.sharedInstance().logOutOfSession { (results, error) in
+            guard error == nil else {
+                print("Error logging out")
+                sender.isEnabled = true
+                return
+            }
+            
+            print(results!)
+            UdacityClient.sharedInstance().sessionID = nil
+            ParseClient.sharedInstance().StudentInformationArray = []
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func refreshBarButton(_ sender: UIBarButtonItem) {
@@ -92,11 +109,6 @@ class StudentTableViewController: UITableViewController {
             }
         }
     }
-    
-    @IBAction func postPinBarButton(_ sender: UIBarButtonItem) {
-        
-    }
-    
     
     /*
      // MARK: - Navigation

@@ -21,6 +21,46 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        addStudentAnnotations()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView?.pinTintColor = .red
+            pinView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        } else {
+            pinView?.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            guard let urlString = view.annotation?.subtitle else {
+                print("No URL String")
+                return
+            }
+            
+            guard let validURL = URL(string: urlString!) else {
+                print("Invalid URL")
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(validURL) {
+                let svc = SFSafariViewController(url: validURL)
+                self.present(svc, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    fileprivate func addStudentAnnotations() {
         var annotations = [MKPointAnnotation]()
         
         for student in ParseClient.sharedInstance().StudentInformationArray {
@@ -52,38 +92,43 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.addAnnotations(annotations)
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "pin"
-        
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView?.pinTintColor = .red
-            pinView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        } else {
-            pinView?.annotation = annotation
-        }
-        
-        return pinView
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            if let urlString = view.annotation?.subtitle {
-                let svc = SFSafariViewController(url: URL(string: urlString!)!)
-                self.present(svc, animated: true, completion: nil)
+    @IBAction func logoutBarButton(_ sender: UIBarButtonItem) {
+        sender.isEnabled = false
+        UdacityClient.sharedInstance().logOutOfSession { (results, error) in
+            guard error == nil else {
+                print("Error logging out")
+                sender.isEnabled = true
+                return
+            }
+            
+            print(results!)
+            UdacityClient.sharedInstance().sessionID = nil
+            ParseClient.sharedInstance().StudentInformationArray = []
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
     
     @IBAction func refreshBarButton(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBAction func logoutBarButton(_ sender: UIBarButtonItem) {
-        UdacityClient.sharedInstance().sessionID = nil
-        dismiss(animated: true, completion: nil)
+        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: nil) { (success, data, error) in
+            guard error == nil else {
+                print("Error getting student locations.")
+                return
+            }
+            
+            if (success) {
+                let dictionary = data!.map({ (student: [String: AnyObject]) -> StudentLocation in
+                    StudentLocation.init(dictionary: student)
+                })
+                
+                ParseClient.sharedInstance().StudentInformationArray = dictionary
+                
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                DispatchQueue.main.async(execute: {
+                    self.addStudentAnnotations()
+                })
+            }
+        }
     }
 }

@@ -114,6 +114,7 @@
                         <outlet property="emailTextField" destination="AyR-jd-dzS" id="b2Q-2s-991"/>
                         <outlet property="loginButton" destination="tcg-35-YwM" id="VIp-tv-maI"/>
                         <outlet property="passwordTextField" destination="ECj-yz-Rbt" id="cfj-qF-KQc"/>
+                        <outlet property="signUpButton" destination="5tn-77-2FT" id="BIC-3A-I7z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -172,10 +173,14 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="vYZ-dk-jMf">
                                 <connections>
-                                    <action selector="refreshBarButton:" destination="Z3d-Bu-4cX" id="y1I-HD-zhf"/>
+                                    <segue destination="Jek-ZQ-291" kind="presentation" id="qaJ-Nn-SBe"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Refresh" image="icon_refresh" id="1i2-52-eIk"/>
+                            <barButtonItem title="Refresh" image="icon_refresh" id="1i2-52-eIk">
+                                <connections>
+                                    <action selector="refreshBarButton:" destination="Z3d-Bu-4cX" id="Gqn-Ff-kMq"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -189,7 +194,7 @@
         <!--Add Information-->
         <scene sceneID="9Ij-VB-LhD">
             <objects>
-                <viewController title="Add Information" id="Jek-ZQ-291" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformationViewController" title="Add Information" id="Jek-ZQ-291" customClass="InformationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yap-qn-zHb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -228,6 +233,9 @@
                                         <state key="normal" title="Find Location">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="findLocationButton:" destination="Jek-ZQ-291" eventType="touchUpInside" id="Cxs-2P-PDZ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -243,6 +251,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="21U-Y8-uXv"/>
                     </view>
+                    <connections>
+                        <outlet property="cityStateTextField" destination="FCt-xu-BGi" id="2gx-n1-oe9"/>
+                        <outlet property="sharedURLTextField" destination="DfX-q9-Kbl" id="d8l-kA-HlR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Np-3Q-Dul" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -375,7 +387,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="Slm-21-mfS">
                                 <connections>
-                                    <action selector="postPinBarButton:" destination="hAL-e2-vtM" id="pVW-41-Lg9"/>
+                                    <segue destination="Jek-ZQ-291" kind="presentation" id="bLb-Oa-NSP"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="HDm-VQ-v70">
@@ -423,7 +435,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sr-4Q-6LC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="34"/>
+            <point key="canvasLocation" x="783" y="33"/>
         </scene>
     </scenes>
     <resources>
@@ -437,4 +449,7 @@
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qaJ-Nn-SBe"/>
+    </inferredMetricsTieBreakers>
 </document>

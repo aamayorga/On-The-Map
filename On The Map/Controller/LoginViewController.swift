@@ -14,10 +14,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         subscribeToKeyboardNotifications()
+        loginButton.isEnabled = true
+        signUpButton.isEnabled = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,6 +38,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
+        signUpButton.isEnabled = false
         guard !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty else {
             return displayError("Enter an email and password")
         }
@@ -73,8 +77,6 @@ class LoginViewController: UIViewController {
                     StudentLocation.init(dictionary: student)
                 })
                 
-                
-                
                 ParseClient.sharedInstance().StudentInformationArray = dictionary
                 print("Succ")
             }
@@ -89,6 +91,7 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: {
             self.loginButton.isEnabled = true
+            self.signUpButton.isEnabled = true
         })
     }
     
