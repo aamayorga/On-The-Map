@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B0BA2CA2035185E008655A9 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BA2C92035185E008655A9 /* InformationViewController.swift */; };
+		4B0BA2CC20361187008655A9 /* StudentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BA2CB20361187008655A9 /* StudentLocationViewController.swift */; };
 		4B1524EA20178BE5003B9765 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1524E920178BE5003B9765 /* AppDelegate.swift */; };
 		4B1524EF20178BE5003B9765 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B1524ED20178BE5003B9765 /* Main.storyboard */; };
 		4B1524F120178BE5003B9765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B1524F020178BE5003B9765 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		4B0BA2C92035185E008655A9 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		4B0BA2CB20361187008655A9 /* StudentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationViewController.swift; sourceTree = "<group>"; };
 		4B1524E620178BE5003B9765 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B1524E920178BE5003B9765 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B1524EE20178BE5003B9765 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				4BED1E8C2023E77200F452A1 /* MapViewController.swift */,
 				4BDB99B52029F61100637A7E /* StudentTableViewController.swift */,
 				4B0BA2C92035185E008655A9 /* InformationViewController.swift */,
+				4B0BA2CB20361187008655A9 /* StudentLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				4B0BA2CA2035185E008655A9 /* InformationViewController.swift in Sources */,
 				4BED1E8B2023E4CB00F452A1 /* StudentInformation.swift in Sources */,
 				4BED1E17201B6F2800F452A1 /* UdacityClient.swift in Sources */,
+				4B0BA2CC20361187008655A9 /* StudentLocationViewController.swift in Sources */,
 				4BED1E19201B70AB00F452A1 /* UdacityConstants.swift in Sources */,
 				4BED1E432020A5EA00F452A1 /* ParseClient.swift in Sources */,
 				4BED1E8D2023E77200F452A1 /* MapViewController.swift in Sources */,

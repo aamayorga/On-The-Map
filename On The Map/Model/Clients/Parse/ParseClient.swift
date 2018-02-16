@@ -16,7 +16,7 @@ class ParseClient: NSObject {
     
     func taskForGETMethod(_ method: String, parameters: [String:AnyObject]?, completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        let request = NSMutableURLRequest(url: udacityURLFromParameters(parameters!, withPathExtension: ParseClient.Methods.StudentLocation))
+        let request = NSMutableURLRequest(url: parseURLFromParameters(parameters!, withPathExtension: ParseClient.Methods.StudentLocation))
         request.httpMethod = "GET"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -68,7 +68,7 @@ class ParseClient: NSObject {
         completionHandlerForConvertData(parsedResult, nil)
     }
     
-    private func udacityURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    private func parseURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
         components.scheme = ParseClient.Constants.ApiScheme
