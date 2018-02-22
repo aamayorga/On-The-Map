@@ -14,6 +14,7 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var cityStateTextField: UITextField!
     @IBOutlet weak var sharedURLTextField: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
+    @IBOutlet weak var loadingStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,9 @@ class InformationViewController: UIViewController {
     }
     
     @IBAction func findLocationButton(_ sender: UIButton) {
-        //disableEnableTappableObjects()
+        
+        self.disableEnableTappableObjects()
+        
         if (cityStateTextField.text?.isEmpty)! {
             displayError("Please enter a city and state location")
             return
@@ -51,26 +54,30 @@ class InformationViewController: UIViewController {
             }
             
             let studentLocationView = self.storyboard?.instantiateViewController(withIdentifier: "StudentLocationViewController") as! StudentLocationViewController
+            studentLocationView.mapString = locationString
+            studentLocationView.mediaURL = self.sharedURLTextField.text
             studentLocationView.placemark = place
+            self.disableEnableTappableObjects()
             self.navigationController?.show(studentLocationView, sender: self)
         }
-    }
-    
-    func displayError(_ error: String) {
-        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: {
-            //self.disableEnableTappableObjects()
-        })
     }
     
     @objc func dismissCurrentView() {
         dismiss(animated: true, completion: nil)
     }
     
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+        self.present(alert, animated: true, completion: {
+            self.disableEnableTappableObjects()
+        })
+    }
+    
     func disableEnableTappableObjects() {
         findLocationButton.isEnabled = !findLocationButton.isEnabled
         sharedURLTextField.isEnabled = !sharedURLTextField.isEnabled
-        findLocationButton.isEnabled = !findLocationButton.isEnabled
+        cityStateTextField.isEnabled = !cityStateTextField.isEnabled
+        loadingStackView.isHidden = !loadingStackView.isHidden
     }
 }

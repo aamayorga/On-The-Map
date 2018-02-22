@@ -22,15 +22,15 @@ struct StudentLocation {
     let updatedAt: String?
 
     init(dictionary: [String:AnyObject]) {
-        objectId = dictionary[ParseClient.JSONResponseKeys.ObjectID] as? String
-        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as? String
-        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as? String
-        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as? String
-        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as? String
-        mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as? String
-        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as? Double
-        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as? Double
-        createdAt = dictionary[ParseClient.JSONResponseKeys.CreatedAt] as? String
-        updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as? String
+        objectId = dictionary[ParseClient.JSONBodyKeys.ObjectID] as? String
+        uniqueKey = dictionary[ParseClient.JSONBodyKeys.UniqueKey] as? String
+        firstName = dictionary[ParseClient.JSONBodyKeys.FirstName] as? String
+        lastName = dictionary[ParseClient.JSONBodyKeys.LastName] as? String
+        mapString = dictionary[ParseClient.JSONBodyKeys.MapString] as? String
+        mediaURL = dictionary[ParseClient.JSONBodyKeys.MediaURL] as? String
+        latitude = dictionary[ParseClient.JSONBodyKeys.Latitude] as? Double
+        longitude = dictionary[ParseClient.JSONBodyKeys.Longitude] as? Double
+        createdAt = dictionary[ParseClient.JSONBodyKeys.CreatedAt] as? String
+        updatedAt = dictionary[ParseClient.JSONBodyKeys.UpdatedAt] as? String
     }
 }

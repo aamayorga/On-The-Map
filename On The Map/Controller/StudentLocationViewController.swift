@@ -12,7 +12,11 @@ import MapKit
 class StudentLocationViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var loadingStackView: UIStackView!
+    @IBOutlet weak var finishButton: UIButton!
     
+    var mapString: String?
+    var mediaURL: String?
     var placemark: CLPlacemark?
     
     override func viewDidLoad() {
@@ -49,9 +53,69 @@ class StudentLocationViewController: UIViewController, MKMapViewDelegate {
         
         return pinView
     }
+    
+    func hideLoadingViewAndDisableButton(_ disable: Bool) {
+        loadingStackView.isHidden = disable
+        finishButton.isEnabled = disable
+    }
 
     @IBAction func postLocation(_ sender: UIButton) {
         
+        hideLoadingViewAndDisableButton(false)
+        
+        let userId = UdacityClient.sharedInstance().userID
+        var firstName = String()
+        var lastName = String()
+        
+        UdacityClient.sharedInstance().getPublicUserData(userId!) { (success, results, error) in
+            guard success else {
+                self.displayError("Getting user data was unsuccessful")
+                return
+            }
+            
+            guard error == nil else {
+                self.displayError("Error in retreving user data")
+                return
+            }
+            
+            guard let userDictionary = results else {
+                self.displayError("No user dictionary returned")
+                return
+            }
+            
+            firstName = userDictionary[ParseClient.JSONResponseKeys.FirstName] as? String ?? ""
+            lastName = userDictionary[ParseClient.JSONResponseKeys.LastName] as? String ?? ""
+            
+            guard let latitude = self.placemark?.location?.coordinate.latitude, let longitude = self.placemark?.location?.coordinate.longitude else {
+                self.displayError("Invalid map coordinates")
+                return
+            }
+            
+            ParseClient.sharedInstance().postStudentLocation(userID: userId, firstName: firstName, lastName: lastName, mapString: self.mapString, mediaURL: self.mediaURL, latitude: latitude, longitude: longitude, completionHandlerForPostingStudentLoaction: { (success, error) in
+                
+                guard error == nil else {
+                    self.displayError("Error with posting location, please try again")
+                    return
+                }
+                
+                if success {
+                    self.dismiss(animated: true, completion: nil)
+                    print("\n\nTHATS IT! IT IS OVER!")
+                } else {
+                    self.displayError("Error with posting location, please try again")
+                    return
+                }
+            })
+        }
+        
+        
     }
     
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+        self.present(alert, animated: true, completion: {
+            self.hideLoadingViewAndDisableButton(true)
+        })
+    }
 }

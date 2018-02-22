@@ -13,6 +13,7 @@
 		4B1524EF20178BE5003B9765 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B1524ED20178BE5003B9765 /* Main.storyboard */; };
 		4B1524F120178BE5003B9765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B1524F020178BE5003B9765 /* Assets.xcassets */; };
 		4B1524F420178BE5003B9765 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B1524F220178BE5003B9765 /* LaunchScreen.storyboard */; };
+		4B23425C203E155C00B4F1DC /* PublicUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B23425B203E155C00B4F1DC /* PublicUserData.swift */; };
 		4B75A92A201ABB810024E1E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A929201ABB810024E1E7 /* LoginViewController.swift */; };
 		4BDB99B42029E97600637A7E /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB99B32029E97600637A7E /* ParseConvenience.swift */; };
 		4BDB99B62029F61100637A7E /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB99B52029F61100637A7E /* StudentTableViewController.swift */; };
@@ -35,6 +36,7 @@
 		4B1524F020178BE5003B9765 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B1524F320178BE5003B9765 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B1524F520178BE5003B9765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B23425B203E155C00B4F1DC /* PublicUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserData.swift; sourceTree = "<group>"; };
 		4B75A929201ABB810024E1E7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4BDB99B32029E97600637A7E /* ParseConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		4BDB99B52029F61100637A7E /* StudentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				4BDB99B72029F63000637A7E /* StudentTableViewCell.swift */,
 				4BED1E8A2023E4CB00F452A1 /* StudentInformation.swift */,
+				4B23425B203E155C00B4F1DC /* PublicUserData.swift */,
 				4BED1E0F201B6DB800F452A1 /* Clients */,
 			);
 			path = Model;
@@ -217,6 +220,7 @@
 				4BED1E17201B6F2800F452A1 /* UdacityClient.swift in Sources */,
 				4B0BA2CC20361187008655A9 /* StudentLocationViewController.swift in Sources */,
 				4BED1E19201B70AB00F452A1 /* UdacityConstants.swift in Sources */,
+				4B23425C203E155C00B4F1DC /* PublicUserData.swift in Sources */,
 				4BED1E432020A5EA00F452A1 /* ParseClient.swift in Sources */,
 				4BED1E8D2023E77200F452A1 /* MapViewController.swift in Sources */,
 				4BDB99B42029E97600637A7E /* ParseConvenience.swift in Sources */,

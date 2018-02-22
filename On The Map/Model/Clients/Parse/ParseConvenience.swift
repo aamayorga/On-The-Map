@@ -24,7 +24,7 @@ extension ParseClient {
                 return
             }
             
-            if let studentArray = resultsDict[ParseClient.JSONResponseKeys.Results] as? [[String: AnyObject]] {
+            if let studentArray = resultsDict[ParseClient.JSONBodyKeys.Results] as? [[String: AnyObject]] {
                 completionHandlerForStudentLocations(true, studentArray, nil)
             } else {
                 completionHandlerForStudentLocations(false, nil, "No student locations dictionary")
@@ -32,6 +32,25 @@ extension ParseClient {
         }
         
         return
+    }
+    
+    func postStudentLocation(userID: String?, firstName: String?, lastName: String?, mapString: String?, mediaURL: String?, latitude: Double, longitude: Double, completionHandlerForPostingStudentLoaction: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         
+        let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(userID ?? "")\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(firstName ?? "")\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(lastName ?? "")\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(mapString ?? "")\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(mediaURL ?? "")\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(latitude), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(longitude)}"
+        
+        let _ = taskForPOSTMethod(ParseClient.Methods.StudentLocation, jsonBody: jsonBody) { (results, error) in
+            guard error == nil else {
+                completionHandlerForPostingStudentLoaction(false, error)
+                return
+            }
+            
+            guard results != nil else {
+                completionHandlerForPostingStudentLoaction(false, error)
+                return
+            }
+            
+            completionHandlerForPostingStudentLoaction(true, nil)
+            return
+        }
     }
 }

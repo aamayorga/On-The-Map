@@ -78,7 +78,6 @@ class LoginViewController: UIViewController {
                 })
                 
                 ParseClient.sharedInstance().StudentInformationArray = dictionary
-                print("Succ")
             }
         }
         

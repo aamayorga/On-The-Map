@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p0z-qk-XfP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -239,12 +239,33 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="81N-tF-Y49" userLabel="Loading View">
+                                <rect key="frame" x="152" y="299" width="108.33333333333331" height="136.66666666666663"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="ZSw-jl-6CD">
+                                        <rect key="frame" x="8.3333333333333428" y="0.0" width="92" height="92"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="92" id="JWq-AX-wtB"/>
+                                            <constraint firstAttribute="height" constant="92" id="Jw0-6p-HUE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znQ-AO-gGR">
+                                        <rect key="frame" x="0.0" y="108" width="108.33333333333333" height="28.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="Mx6-1g-SRo"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="81N-tF-Y49" firstAttribute="centerX" secondItem="Yap-qn-zHb" secondAttribute="centerX" id="4g1-Dk-Q0F"/>
                             <constraint firstItem="6c7-Y3-xM5" firstAttribute="top" secondItem="ixm-Re-l80" secondAttribute="bottom" constant="48" id="73g-ii-iGm"/>
                             <constraint firstItem="6c7-Y3-xM5" firstAttribute="leading" secondItem="21U-Y8-uXv" secondAttribute="leading" constant="16" id="9fy-IW-v3u"/>
                             <constraint firstItem="6c7-Y3-xM5" firstAttribute="centerX" secondItem="Yap-qn-zHb" secondAttribute="centerX" id="B2P-4q-LQx"/>
+                            <constraint firstItem="81N-tF-Y49" firstAttribute="centerY" secondItem="Yap-qn-zHb" secondAttribute="centerY" id="O9V-aT-EO1"/>
                             <constraint firstItem="21U-Y8-uXv" firstAttribute="trailing" secondItem="6c7-Y3-xM5" secondAttribute="trailing" constant="16" id="UQd-Mq-VkP"/>
                             <constraint firstItem="ixm-Re-l80" firstAttribute="top" secondItem="21U-Y8-uXv" secondAttribute="top" constant="35" id="ekn-xg-379"/>
                             <constraint firstItem="ixm-Re-l80" firstAttribute="centerX" secondItem="Yap-qn-zHb" secondAttribute="centerX" id="fsZ-Il-DJ2"/>
@@ -255,6 +276,7 @@
                     <connections>
                         <outlet property="cityStateTextField" destination="FCt-xu-BGi" id="2gx-n1-oe9"/>
                         <outlet property="findLocationButton" destination="T72-da-Dht" id="ubd-Yg-Exg"/>
+                        <outlet property="loadingStackView" destination="81N-tF-Y49" id="Dp8-gD-QBr"/>
                         <outlet property="sharedURLTextField" destination="DfX-q9-Kbl" id="d8l-kA-HlR"/>
                     </connections>
                 </viewController>
@@ -298,6 +320,24 @@
                                     <action selector="postLocation:" destination="PqJ-dh-cc6" eventType="touchUpInside" id="ahe-tD-r05"/>
                                 </connections>
                             </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hzG-O3-0OS" userLabel="Loading View">
+                                <rect key="frame" x="153" y="300" width="108.33333333333331" height="136.66666666666663"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="jGC-z5-dDH">
+                                        <rect key="frame" x="8.3333333333333428" y="0.0" width="92" height="92"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="92" id="e4P-Yz-E4f"/>
+                                            <constraint firstAttribute="width" constant="92" id="gO4-e4-aR0"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLd-mx-FRC">
+                                        <rect key="frame" x="0.0" y="108" width="108.33333333333333" height="28.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -308,10 +348,14 @@
                             <constraint firstItem="0P8-qo-bz9" firstAttribute="leading" secondItem="Qie-xH-d4h" secondAttribute="leading" id="g3C-6z-iNu"/>
                             <constraint firstItem="Qie-xH-d4h" firstAttribute="trailing" secondItem="uxK-YS-Ggl" secondAttribute="trailing" constant="16" id="kIB-Rp-9oW"/>
                             <constraint firstItem="Qie-xH-d4h" firstAttribute="trailing" secondItem="0P8-qo-bz9" secondAttribute="trailing" id="pyW-Wy-lPo"/>
+                            <constraint firstItem="hzG-O3-0OS" firstAttribute="centerY" secondItem="gJX-PJ-OU3" secondAttribute="centerY" id="y57-5K-awi"/>
+                            <constraint firstItem="hzG-O3-0OS" firstAttribute="centerX" secondItem="gJX-PJ-OU3" secondAttribute="centerX" id="ynd-e1-s7I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qie-xH-d4h"/>
                     </view>
                     <connections>
+                        <outlet property="finishButton" destination="uxK-YS-Ggl" id="ngN-uM-9AN"/>
+                        <outlet property="loadingStackView" destination="hzG-O3-0OS" id="WM9-d6-inV"/>
                         <outlet property="mapView" destination="i6n-tS-15U" id="5iX-rC-yCP"/>
                     </connections>
                 </viewController>
@@ -473,9 +517,10 @@
         <image name="icon_pin" width="24" height="24"/>
         <image name="icon_refresh" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
+        <image name="loading" width="46" height="46"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qaJ-Nn-SBe"/>
+        <segue reference="bLb-Oa-NSP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -29,11 +29,14 @@ extension UdacityClient {
         // MARK: Session ID
         static let Session = "session"
         static let SessionID = "id"
+        static let Account = "account"
+        static let KeyID = "key"
     }
     
     struct Methods {
         
         // MARK: Authentication
         static let Session = "/session"
+        static let Users = "/users/{key}"
     }
 }

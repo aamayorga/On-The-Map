@@ -37,6 +37,8 @@ class StudentTableViewController: UITableViewController {
         cell.studentNameLabel.text = "\(studentDictionary[indexPath.row].firstName ?? "") \(studentDictionary[indexPath.row].lastName ?? "")"
         cell.studentShareLabel.text = studentDictionary[indexPath.row].mediaURL
         
+        
+        
         return cell
     }
     
@@ -60,6 +62,8 @@ class StudentTableViewController: UITableViewController {
             print("Invalid URL")
             return
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         if UIApplication.shared.canOpenURL(validURL) {
             let svc = SFSafariViewController(url: validURL)
@@ -109,15 +113,4 @@ class StudentTableViewController: UITableViewController {
             }
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
