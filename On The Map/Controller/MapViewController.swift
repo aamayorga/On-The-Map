@@ -63,7 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     fileprivate func addStudentAnnotations() {
         var annotations = [MKPointAnnotation]()
         
-        for student in ParseClient.sharedInstance().StudentInformationArray {
+        for student in StudentDatasource.sharedInstance().StudentInformationArray {
             
             guard let lat = student.latitude else {
                 print("Latitude is nil")
@@ -103,7 +103,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             print(results!)
             UdacityClient.sharedInstance().sessionID = nil
-            ParseClient.sharedInstance().StudentInformationArray = []
+            StudentDatasource.sharedInstance().StudentInformationArray = []
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -111,9 +111,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func refreshBarButton(_ sender: UIBarButtonItem) {
-        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: nil) { (success, data, error) in
+        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: "-updatedAt") { (success, data, error) in
             guard error == nil else {
-                print("Error getting student locations.")
+                let alert = UIAlertController(title: "Error", message: "Error getting student locations.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -122,7 +124,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     StudentLocation.init(dictionary: student)
                 })
                 
-                ParseClient.sharedInstance().StudentInformationArray = dictionary
+                StudentDatasource.sharedInstance().StudentInformationArray = dictionary
                 
                 self.mapView.removeAnnotations(self.mapView.annotations)
                 DispatchQueue.main.async(execute: {

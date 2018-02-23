@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class InformationViewController: UIViewController {
+class InformationViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var cityStateTextField: UITextField!
     @IBOutlet weak var sharedURLTextField: UITextField!
@@ -18,6 +18,8 @@ class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.cityStateTextField.delegate = self
+        self.sharedURLTextField.delegate = self
 
         // Cancel button
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissCurrentView))
@@ -60,6 +62,11 @@ class InformationViewController: UIViewController {
             self.disableEnableTappableObjects()
             self.navigationController?.show(studentLocationView, sender: self)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @objc func dismissCurrentView() {

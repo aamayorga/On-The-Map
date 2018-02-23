@@ -75,12 +75,16 @@ class UdacityClient: NSObject {
             }
             
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                if ((response as? HTTPURLResponse)?.statusCode == 403) {
+                    sendError("Wrong credentials")
+                } else {
+                    sendError("Your request returned a status code other than 2xx!")
+                }
                 return
             }
             

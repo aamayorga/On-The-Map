@@ -65,9 +65,9 @@ class LoginViewController: UIViewController {
     
     func completeLogin() {
         
-        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: nil) { (success, data, error) in
+        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: "-updatedAt") { (success, data, error) in
             guard error == nil else {
-                print("Error getting student locations.")
+                self.displayError("Error getting student locations.")
                 return
             }
             
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
                     StudentLocation.init(dictionary: student)
                 })
                 
-                ParseClient.sharedInstance().StudentInformationArray = dictionary
+                StudentDatasource.sharedInstance().StudentInformationArray = dictionary
             }
         }
         

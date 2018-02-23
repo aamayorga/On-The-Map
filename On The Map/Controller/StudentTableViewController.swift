@@ -16,7 +16,7 @@ class StudentTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.studentDictionary = ParseClient.sharedInstance().StudentInformationArray
+        self.studentDictionary = StudentDatasource.sharedInstance().StudentInformationArray
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +86,7 @@ class StudentTableViewController: UITableViewController {
             
             print(results!)
             UdacityClient.sharedInstance().sessionID = nil
-            ParseClient.sharedInstance().StudentInformationArray = []
+            StudentDatasource.sharedInstance().StudentInformationArray = []
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -94,9 +94,11 @@ class StudentTableViewController: UITableViewController {
     }
     
     @IBAction func refreshBarButton(_ sender: UIBarButtonItem) {
-        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: nil) { (success, data, error) in
+        ParseClient.sharedInstance().getStudentLocations(100, skip: nil, order: "-updatedAt") { (success, data, error) in
             guard error == nil else {
-                print("Error getting student locations.")
+                let alert = UIAlertController(title: "Error", message: "Error getting student locations.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -105,7 +107,7 @@ class StudentTableViewController: UITableViewController {
                     StudentLocation.init(dictionary: student)
                 })
                     
-                ParseClient.sharedInstance().StudentInformationArray = dictionary
+                StudentDatasource.sharedInstance().StudentInformationArray = dictionary
                 
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()

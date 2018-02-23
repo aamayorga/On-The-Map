@@ -55,7 +55,7 @@ extension UdacityClient {
             var sessionNumber = String()
             
             guard (error == nil) else {
-                completionHandlerForSession(false, nil, nil, "Failure to connect")
+                completionHandlerForSession(false, nil, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String)
                 return
             }
             

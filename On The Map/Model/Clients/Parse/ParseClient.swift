@@ -12,8 +12,6 @@ class ParseClient: NSObject {
 
     var session = URLSession.shared
     
-    var StudentInformationArray = [StudentLocation]()
-    
     func taskForGETMethod(_ method: String, parameters: [String:AnyObject]?, completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         let request = NSMutableURLRequest(url: parseURLFromParameters(parameters!, withPathExtension: method))
