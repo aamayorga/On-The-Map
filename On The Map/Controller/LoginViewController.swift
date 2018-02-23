@@ -78,11 +78,13 @@ class LoginViewController: UIViewController {
                 })
                 
                 StudentDatasource.sharedInstance().StudentInformationArray = dictionary
+                
+                DispatchQueue.main.async {
+                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
+                    self.present(controller, animated: true, completion: nil)
+                }
             }
         }
-        
-        let controller = storyboard!.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
-        present(controller, animated: true, completion: nil)
     }
     
     func displayError(_ error: String) {

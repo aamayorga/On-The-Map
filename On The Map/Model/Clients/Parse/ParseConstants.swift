@@ -17,6 +17,11 @@ extension ParseClient {
         static let ObjectID = "objectId"
     }
     
+    struct Headers {
+        static let ParseAppId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        static let ParseAPIKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+    }
+    
     struct Constants {
         
         static let ApiScheme = "https"

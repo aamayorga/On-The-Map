@@ -16,8 +16,8 @@ class ParseClient: NSObject {
         
         let request = NSMutableURLRequest(url: parseURLFromParameters(parameters!, withPathExtension: method))
         request.httpMethod = "GET"
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue(ParseClient.Headers.ParseAppId, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseClient.Headers.ParseAPIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
